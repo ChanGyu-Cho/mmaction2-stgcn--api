@@ -1,1 +1,75 @@
-mmaction-clinet는 skeleton2d.csv를 읽어서 sever로 보내는 코드
+# ST-GCN (MMAction2) HTTP API (bocker060/mmaction2-api)
+
+GPU-enabled Docker image exposing an HTTP API that consumes `skeleton2d.csv` (COCO-17 order) and returns embeddings/predictions.
+
+---
+
+## 🚀 Quickstart
+
+```bash
+docker run -d --gpus all -p 19031:19031 --name mmaction2-api bocker060/mmaction2-api
+# Optional: ngrok
+ngrok config add-authtoken <YOUR_TOKEN>
+ngrok http 19031
+```
+
+# 🔌 Endpoint
+POST /mmaction_stgcn_test
+Base URL (default): http://localhost:19031/mmaction_stgcn_test
+
+Request (JSON)
+Field	Type	Required	Description
+csv_base64	string	✅	Base64 of the entire skeleton2d.csv (UTF-8)
+
+# Response (JSON example)
+```json
+{
+  "result": {
+    "num_samples": 1,
+    "predictions": [true, false, true, ...],
+    "accuracy": 0.9532
+  }
+}
+```
+
+# 🧪 Client example
+```bash
+python mmaction-client.py
+```
+Does:
+
+Read skeleton2d.csv → base64 encode → POST
+
+Robust timeouts / error messages
+
+Prints num_samples, preview of predictions, and accuracy (if provided)
+
+PowerShell one-liner:
+
+```powershell
+$csv = Get-Content .\skeleton2d.csv -Raw
+$b = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($csv))
+curl -X POST "http://localhost:19031/mmaction_stgcn_test" `
+  -H "Content-Type: application/json" `
+  -d (@{csv_base64=$b} | ConvertTo-Json)
+```
+
+🧱 Pipeline (context)
+```lua
+[Images] --(OpenPose API)--> skeleton2d.csv
+skeleton2d.csv --(MMAction2 API)--> predictions/embeddings
+``` 
+
+# 🛠️ Troubleshooting
+HTTP 4xx/5xx: docker logs mmaction2-api
+
+Large CSV(>~10MB): client warns; consider segmenting long sequences
+
+Schema: Ensure COCO-17 columns: Nose_x, Nose_y, Nose_c, LEye_x, ..., RAnkle_c
+
+# 🇰🇷 한글 요약
+실행: docker run -d --gpus all -p 19031:19031 --name mmaction2-api bocker060/mmaction2-api
+
+엔드포인트: POST /mmaction_stgcn_test (CSV base64 입력 → 예측 JSON)
+
+클라이언트: mmaction-client.py 실행해 결과 확인
