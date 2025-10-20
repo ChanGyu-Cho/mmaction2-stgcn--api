@@ -4,7 +4,8 @@ https://hub.docker.com/r/bocker060/mmaction2-api
 
 GPU-enabled Docker image exposing an HTTP API that consumes `skeleton2d.csv` (COCO-17 order) and returns embeddings/predictions. 
 
-This mmaction2 (stgcn) provides inference for a single skeleton. For multi-file training and testing, please visit other repos and images.
+This mmaction2 (stgcn) provides inference for a single skeleton. For multi-file training and testing, please visit other repos and images.  
+https://github.com/ChanGyu-Cho/mmaction2-stgcn-golfAnalysis
 
 Get `skeleton2d.csv` from: https://github.com/ChanGyu-Cho/openpose-api (using OpenPose COCO-17 model)
 
