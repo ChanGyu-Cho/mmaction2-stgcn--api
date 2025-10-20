@@ -1,6 +1,8 @@
 # ST-GCN (MMAction2) HTTP API (bocker060/mmaction2-api)
 
-GPU-enabled Docker image exposing an HTTP API that consumes `skeleton2d.csv` (COCO-17 order) and returns embeddings/predictions.
+GPU-enabled Docker image exposing an HTTP API that consumes `skeleton2d.csv` (COCO-17 order) and returns embeddings/predictions. 
+
+get skeleton2d.csv file in https://github.com/ChanGyu-Cho/openpose-api (using openpose coco-17 model)
 
 ---
 
