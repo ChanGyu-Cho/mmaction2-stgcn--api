@@ -1,6 +1,8 @@
-# ST-GCN (MMAction2) HTTP API (bocker060/mmaction2-api)
+# ST-GCN (MMAction2) Finetuned in Golf Swing, HTTP API (bocker060/mmaction2-api)
 
 GPU-enabled Docker image exposing an HTTP API that consumes `skeleton2d.csv` (COCO-17 order) and returns embeddings/predictions. 
+
+This mmaction2 (stgcn) provides inference for a single skeleton. For multi-file training and testing, please visit other repos and images.
 
 get skeleton2d.csv file in https://github.com/ChanGyu-Cho/openpose-api (using openpose coco-17 model)
 
@@ -23,15 +25,13 @@ Request (JSON)
 Field	Type	Required	Description
 csv_base64	string	✅	Base64 of the entire skeleton2d.csv (UTF-8)
 
-# Response (JSON example)
+# Response 
 ```json
-{
-  "result": {
-    "num_samples": 1,
-    "predictions": [true, false, true, ...],
-    "accuracy": 0.9532
-  }
-}
+✅ API 요청 성공 (처리 시간: 2.83초)
+   num_samples: 1
+   predictions (first 3): [true]
+   predictions_json: [true]
+   accuracy: not provided (inference-only)
 ```
 
 # 🧪 Client example
