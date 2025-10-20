@@ -1,3 +1,5 @@
+https://hub.docker.com/r/bocker060/mmaction2-api
+
 # ST-GCN (MMAction2) Finetuned in Golf Swing, HTTP API (bocker060/mmaction2-api)
 
 GPU-enabled Docker image exposing an HTTP API that consumes `skeleton2d.csv` (COCO-17 order) and returns embeddings/predictions. 
