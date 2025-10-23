@@ -126,6 +126,8 @@ skeleton2d.csv --(MMAction2 API)--> predictions/embeddings
 
 Confirmed to work well on rtx 4000ada
 
+https://console.runpod.io/deploy?template=dxtxps4hi8&ref=ib9s4r6y
+
 ## 🇰🇷 한글 요약
 
 - 실행: `docker run -d --gpus all -p 19031:19031 --name mmaction2-api bocker060/mmaction2-api`  
